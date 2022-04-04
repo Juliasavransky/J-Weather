@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 125%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Expletus Sans", cursive;
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.navbar__container {
+  font-size: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.navbar__container--item {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar__container--item-logo {
+  width: 400px;
+}
+
+.form {
+  margin: 1rem;
+  position: relative;
+}
+
+.form__input {
+  padding: 0.5rem 3rem;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.form__list {
+  position: absolute;
+  width: 30%;
+}
+
+.form__list--item {
+  list-style: none;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #a8a2a2;
+  cursor: pointer;
+}
+
+.form__list--item:hover {
+  background-color: lightcyan;
+}
+
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+}
+
+.card__content {
+  width: 15rem;
+  padding: 2rem;
+  border-radius: 2.4rem;
+  background: #f4f1f1;
+  -webkit-box-shadow: inset 20px 20px 28px #e3e0e0, inset -20px -20px 28px #ffffff;
+          box-shadow: inset 20px 20px 28px #e3e0e0, inset -20px -20px 28px #ffffff;
+}
+
+.card__date {
+  margin: 1rem;
+}
+
+.card__header {
+  margin: 1rem;
+}
+
+.card__max-min {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card__dayIcon {
+  margin: 0 auto;
+  width: 70%;
+}

@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  &__content {
+    width: 15rem;
+    padding: 2rem;
+    border-radius: 2.4rem;
+    background: #f4f1f1;
+    box-shadow: inset 20px 20px 28px #e3e0e0, inset -20px -20px 28px #ffffff;
+  }
+
+  &__date {
+    margin: 1rem;
+  }
+  &__header {
+    margin: 1rem;
+  }
+  &__max-min {
+    display: flex;
+    justify-content: center;
+  }
+  &__dayIcon {
+    margin: 0 auto;
+    width: 70%;
+  }
+}

@@ -1,0 +1,13 @@
+.navbar__container {
+  // background-color: $green;
+  font-size: $font-big;
+  display: flex;
+  justify-content: space-around;
+  &--item {
+    text-decoration: none;
+    cursor: pointer;
+    &-logo {
+      width: 400px;
+    }
+  }
+}

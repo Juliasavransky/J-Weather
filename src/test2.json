@@ -1,0 +1,26 @@
+
+[
+  {
+    "LocalObservationDateTime": "2022-03-31T00:08:00-05:00",
+    "EpochTime": 1648703280,
+    "WeatherText": "Snow",
+    "WeatherIcon": 22,
+    "HasPrecipitation": true,
+    "PrecipitationType": "Snow",
+    "IsDayTime": false,
+    "Temperature": {
+      "Metric": {
+        "Value": -1.5,
+        "Unit": "C",
+        "UnitType": 17
+      },
+      "Imperial": {
+        "Value": 29,
+        "Unit": "F",
+        "UnitType": 18
+      }
+    },
+    "MobileLink": "http://www.accuweather.com/en/us/lake-view-ia/51450/current-weather/632?lang=en-us",
+    "Link": "http://www.accuweather.com/en/us/lake-view-ia/51450/current-weather/632?lang=en-us"
+  }
+]
