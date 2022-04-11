@@ -12,33 +12,45 @@ export const fetchWeatherFor5 = createAsyncThunk("dailyFor5/fetchWeatherFor5", a
     return result.data.DailyForecasts;
 })
 
-const initialState = {
-    dailyFor5: [],
-}
 
 const dailyFor5Slice = createSlice({
     name: "dailyFor5",
-    initialState,
+    initialState: {
+        dailyFor5: [],
+        cityKey: ""
+    },
     reducers: {
-        addDailyFor5: (state, { payload }) => {
-            state.dailyFor5 = payload;
+        addDailyFor5: (state, action) => {
+            state.dailyFor5 = action.payload.dailyFor5;
         },
+        addCityKey: (state, action) => {
+            state.cityKey = action.payload.cityKey;
+
+        }
     },
     extraReducers: {
         [fetchWeatherFor5.pending]: () => {
-            console.log("pending")
+            // console.log("pending")
         },
         [fetchWeatherFor5.fulfilled]: (state, { payload }) => {
-            console.log("fulfilled")
+            // console.log("fulfilled")
             return { ...state, dailyFor5: payload }
         },
         [fetchWeatherFor5.rejected]: () => {
-            console.log("rejected")
+            // console.log("rejected")
 
         }
     }
 });
 
 export const { addDailyFor5 } = dailyFor5Slice.actions;
+export const { addCityKey } = dailyFor5Slice.actions;
+
 export const getAllDailyFor5 = (state) => state.dailyFor5.dailyFor5 //state.name.initialState
+export const getFirstDay = (state) => state.dailyFor5.dailyFor5[0] //state.name.initialState
+export const getCityId = (state) => state.cityKey.cityKey //state.name.initialState
+
 export default dailyFor5Slice.reducer;
+
+
+// export const weatherFor5Days = dailyFor5Slice.actions;

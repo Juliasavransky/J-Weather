@@ -1,74 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchWeatherFor5 } from '../state/weather/dailyFor5Slice';
+import { favoritesActions } from '../state/weather/favoritesSlice';
+import axios from 'axios';
+
 
 import DisplayDailyFor5 from './DisplayDailyFor5';
 import BtnFavorites from './BtnFavorites';
-
+import Search from './Search';
+const API_KEY_WEATHER = process.env.REACT_APP_WEATHER_API;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Home = () => {
+    const [lat, setLat] = useState(null);
+    const [lon, setLon] = useState(null);
+    const [fullData, setFullData] = useState([]);
+    const [cityKey, setCityKey] = useState("");
     const dispatch = useDispatch();
-    const cityKey = "215854" //default Tel-Aviv
+
+
+    // console.log('lat', lat)
+    // console.log('lon', lon)
+
+
+    // const cityKey = "215854" //default Tel-Aviv
+
+
+
+    useEffect(() => {
+        const onGeoLocation = async () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    setLat(position.coords.latitude);
+                    setLon(position.coords.longitude);
+
+                });
+            } else {
+                alert("🙁🙁🙁Sorry!!! Your Browser Doesn't Support Geolocation🙁🙁🙁");
+            }
+
+            const request = await axios
+                .get(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${API_KEY_WEATHER}&q=${lat}%2C${lon}`);
+            setFullData(request.data);
+            setCityKey(request.data.Key)
+            // console.log("setFullData", request.data)
+            // console.log("setCityKey", request.data.Key)
+
+            return request;
+        }
+        onGeoLocation();
+    }, [lat, lon]);
+
+
 
     useEffect(() => { //getting the data from the redux slice for weather 5 days 
         dispatch(fetchWeatherFor5(cityKey))
-    }, [dispatch]);
-
+        dispatch(favoritesActions.getCityKey(cityKey))
+        // dispatch(favoritesActions.getCityName(cityName))
+        // dispatch(favoritesActions.getCountryName(countryName))
+    }, [dispatch, cityKey]);
 
     return (
         < >
+            <Search />
             <BtnFavorites />
             <DisplayDailyFor5 />
         </>
     )
 }
 
-export default Home
-
-
-  // const timeStamp = "2022-03-30T07:00:00+03:00";
-  // let date = new Date(timeStamp).getUTCDay();
-  // console.log(date)
-  // const dayOfTheWeek = {
-  //   0: "Sunday",
-  //   1: "Monday",
-  //   2: "Tuesday",
-  //   3: "Wednesday",
-  //   4: "Thursday",
-  //   5: "Friday",
-  //   6: "Saturday"
-  // }
-
-  // const dayWeatherHeader = test.item.Day.IconPhrase;
-  // const nightWeatherHeader = test.item.Night.IconPhrase;
-
-  // const dayIcons = test.item.Day.Icon;
-  // const nightIcons = test.item.Night.Icon;
-  // const TemperatureMax = test.item.Temperature.Maximum.Value;
-  // const TemperatureUnit = test.item.Temperature.Maximum.Unit;
-  // const TemperatureMin = test.item.Temperature.Minimum.Value;
-  // const TemperatureUnit = test.item.Temperature.Minimum.Unit;
-
-
-
-
-
-  // useEffect(() => { //getting the data from the api by the city key for 5 days
-    //     if (cityKey) {
-    //         const fetchDailyFor5 = async () => {
-    //             setError(false);
-    //             setIsLoading(true);
-    //             try {
-    //                 const result = await axios.get(`${BASE_URL}forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY_WEATHER}&metric=true`);
-    //                 setDailyFor5(result.data);
-    //                 console.log('setDailyFor5', result.data);
-    //                 setIsLoading(false);
-    //             }
-    //             catch (error) {
-    //                 setError(true);
-    //                 setIsLoading(false);
-    //             }
-    //         }
-    //         fetchDailyFor5()
-    //     }
-    // }, [cityKey]);
+export default Home;
